@@ -8,7 +8,7 @@ Feature: Create workload from Operator Backed file
         And user has created namespace starts with "knative-serving"
 
 
-    @regression-1
+    @regression
     Scenario: Create the workload from Operator Backed : A-08-TC01
         Given user is at Developer Catalog page with OperatorBacked type selection
         When user selects knative Serving card
@@ -19,7 +19,7 @@ Feature: Create workload from Operator Backed file
         And user is able to see workload "knative-serving-1" in topology page
 
 
-    @regression-1
+    @regression
     Scenario: Perform cancel operation : A-08-TC02
         Given user is at Developer Catalog page with OperatorBacked type selection
         When user selects knative Serving card
