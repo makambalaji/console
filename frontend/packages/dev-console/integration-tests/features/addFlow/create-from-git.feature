@@ -7,11 +7,11 @@ Feature: Create Application from git form
       And user has created namespace starts with "aut-addflow-git"
 
 
-   Scenario Outline: Builder iamge detected for git url "<git_url>" : A-04-TC01
+   Scenario Outline: Builder image detected for git url "<git_url>" : A-04-TC01
       Given user is at Import from git page
       When user enters Git Repo url as "<git_url>"
       Then git url gets Validated
-      And builder image is detetced
+      And builder image is detected
       And builder image version drop down is displayed
       And Application name displays as "<app_name>"
       And Name displays as "<name>"
@@ -89,7 +89,7 @@ Feature: Create Application from git form
       And user clicks "Routing" link in Advanced Options section
       And user enters Hostname as "home"
       And user enters Path as "/home"
-      And select default Target Port
+      And user selects default Target Port
       And user clicks Create button on Add page
       Then user will be redirected to Topology page
       And the route of application "nodejs-ex-git" contains "home"

@@ -4,7 +4,7 @@ Feature: Select Runtime Icon while deploying image and allow images insecure reg
 
 Background: 
     Given user is at developer perspective
-    And user has selected namespace "aut-addflow-containerimage"
+    And user has created namespace starts with "aut-addflow-containerimage"
 
 
 @regression

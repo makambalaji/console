@@ -1,50 +1,48 @@
+import { messages } from '../../../fixtures/staticText/addFlow';
 export const containerImageObj = {
   imageSection: {
-    externalRegistryImageCheckBox: "#form-radiobutton-registry-external-field",
-    internalRegistryImageCheckBox: "#form-radiobutton-registry-internal-field",
+    externalRegistryImageCheckBox: '#form-radiobutton-registry-external-field',
+    internalRegistryImageCheckBox: '#form-radiobutton-registry-internal-field',
     externalRegistry: {
-      allowImageFromInsecureRegistry:
-        "#form-checkbox-allowInsecureRegistry-field",
-      imageName: "#form-input-searchTerm-field",
-      validatedMessage: "#form-input-searchTerm-field-helper",
+      allowImageFromInsecureRegistry: '#form-checkbox-allowInsecureRegistry-field',
+      imageName: '#form-input-searchTerm-field',
+      validatedMessage: '#form-input-searchTerm-field-helper',
     },
     internalRegistry: {
-      selectProject: "#form-ns-dropdown-imageStream-namespace-field",
-      imageStream: "#form-ns-dropdown-imageStream-image-field",
-      tag: "#form-dropdown-imageStream-tag-field",
+      selectProject: '#form-ns-dropdown-imageStream-namespace-field',
+      imageStream: '#form-ns-dropdown-imageStream-image-field',
+      tag: '#form-dropdown-imageStream-tag-field',
     },
   },
 };
 
 export const containerImagePage = {
   enterExternalRegistryImageName: (imageName: string) =>
-    cy
-      .get(containerImageObj.imageSection.externalRegistry.imageName)
-      .type(imageName),
+    cy.get(containerImageObj.imageSection.externalRegistry.imageName).type(imageName),
   selectProject: (projectName: string) =>
     cy.selectValueFromAutoCompleteDropDown(
       containerImageObj.imageSection.internalRegistry.selectProject,
-      projectName
+      projectName,
     ),
   selectImageStream: (imageStreamName: string) =>
     cy.selectValueFromAutoCompleteDropDown(
       containerImageObj.imageSection.internalRegistry.imageStream,
-      imageStreamName
+      imageStreamName,
     ),
   selectTag: (tag: string) =>
     cy.selectValueFromAutoCompleteDropDown(
       containerImageObj.imageSection.internalRegistry.tag,
-      tag
+      tag,
     ),
   selectInternalImageRegistry: () =>
-    cy
-      .get(containerImageObj.imageSection.internalRegistryImageCheckBox)
-      .check(),
+    cy.get(containerImageObj.imageSection.internalRegistryImageCheckBox).check(),
   verifyValidatedMessage: () =>
     cy
       .get(containerImageObj.imageSection.externalRegistry.validatedMessage)
-      .should("have.text", "Validated"),
+      .should('have.text', messages.gitUrlValidated),
   enterGitUrl: (gitUrl: string) => {
-    cy.byLegacyTestID("application-form-app-name").clear().type(gitUrl);
+    cy.byLegacyTestID('application-form-app-name')
+      .clear()
+      .type(gitUrl);
   },
 };

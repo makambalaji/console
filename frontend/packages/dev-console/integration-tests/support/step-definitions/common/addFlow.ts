@@ -5,7 +5,7 @@ import { addOptions } from '../../constants/add';
 import { naviagteTo } from '../../pages/app';
 import { devNavigationMenu } from '../../constants/global';
 
-Given("user is at Add page", () => {
+Given('user is at Add page', () => {
   naviagteTo(devNavigationMenu.Add);
 });
 
@@ -22,18 +22,18 @@ Given(
   },
 );
 
-Given("user is at Developer Catlog page", () => {
+Given('user is at Developer Catlog page', () => {
   addPage.selectCardFromOptions(addOptions.DeveloperCatalog);
 });
 
-When("user navigates to Add page", () => {
+When('user navigates to Add page', () => {
   naviagteTo(devNavigationMenu.Add);
 });
 
-When("user clicks Create button on Add page", () => {
+When('user clicks Create button on Add page', () => {
   addPage.clickCreate();
 });
 
-Then("user will be redirected to Add page", () => {
-  cy.get("h1.ocs-page-layout__title").should("have.text", "Add");
+Then('user will be redirected to Add page', () => {
+  cy.get('h1.ocs-page-layout__title').should('have.text', 'Add');
 });

@@ -151,34 +151,34 @@ When('user search and installs the knative Camel operator with default values', 
   operatorsPage.installOperator();
 });
 
-Given("user has installed OpenShift Serverless Operator", () => {
+Given('user has installed OpenShift Serverless Operator', () => {
   perspective.switchTo(switchPerspective.Administrator);
   nav.sidenav.switcher.shouldHaveText('Administrator');
-  operatorsPage.verifyOperatorInNavigationMenu("Serverless");
+  operatorsPage.verifyOperatorInNavigationMenu('Serverless');
 });
 
-Given("user has installed ElasticSearch Operator provided by Red Hat", () => {
+Given('user has installed ElasticSearch Operator provided by Red Hat', () => {
   perspective.switchTo(switchPerspective.Administrator);
   nav.sidenav.switcher.shouldHaveText('Administrator');
-  operatorsPage.verifyInstalledOperator("ElasticsearchOperator");
+  operatorsPage.verifyInstalledOperator('ElasticsearchOperator');
 });
 
-Given("user has installed Red Hat OpenShift Jaeger Operator", () => {
+Given('user has installed Red Hat OpenShift Jaeger Operator', () => {
   perspective.switchTo(switchPerspective.Administrator);
   nav.sidenav.switcher.shouldHaveText('Administrator');
-  operatorsPage.verifyInstalledOperator("Jaeger");
+  operatorsPage.verifyInstalledOperator('Jaeger');
 });
 
-Given("user has installed Kiali Operator provided by Red Hat", () => {
+Given('user has installed Kiali Operator provided by Red Hat', () => {
   perspective.switchTo(switchPerspective.Administrator);
   nav.sidenav.switcher.shouldHaveText('Administrator');
-  operatorsPage.verifyInstalledOperator("Kiali");
+  operatorsPage.verifyInstalledOperator('Kiali');
 });
 
-Given("user has installed Red Hat OpenShift Service Mesh Operator", () => {
+Given('user has installed Red Hat OpenShift Service Mesh Operator', () => {
   perspective.switchTo(switchPerspective.Administrator);
   nav.sidenav.switcher.shouldHaveText('Administrator');
-  operatorsPage.verifyInstalledOperator("ServiceMesh");
+  operatorsPage.verifyInstalledOperator('ServiceMesh');
 });
 
 When('user installs the Eclipse che operator with default values', () => {
@@ -192,13 +192,13 @@ Then('Event sources card display in +Add page in dev perspective', () => {
   addPage.verifyCard('Event Source');
 });
 
-Given("user has installed OpenShift Pipelines operator", () => {
+Given('user has installed OpenShift Pipelines operator', () => {
   perspective.switchTo(switchPerspective.Developer);
   guidedTour.close();
   nav.sidenav.switcher.shouldHaveText('Developer');
-  cy.get("#page-sidebar").then(($navMenu) => {
+  cy.get('#page-sidebar').then(($navMenu) => {
     if ($navMenu.find('[data-test-id="pipeline-header"]').length) {
-      cy.log("pipeline operator is installed");
+      cy.log('pipeline operator is installed');
     }
   });
 });

@@ -512,7 +512,7 @@ export const addHealthChecksPage = {
       .should('be.visible');
   },
   addLivenessProbe: () => {
-    cy.byButtonText('Add liveness Probe')
+    cy.byButtonText('Add Liveness Probe')
       .scrollIntoView()
       .click();
     cy.get('div.odc-heath-check-probe-form').should('be.visible');

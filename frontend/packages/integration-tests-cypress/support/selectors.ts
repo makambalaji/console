@@ -9,6 +9,10 @@ declare global {
       byDataID(selector: string): Chainable<Element>;
       byTestSelector(selector: string): Chainable<Element>;
       byTestDropDownMenu(selector: string): Chainable<Element>;
+      selectValueFromAutoCompleteDropDown(
+        selector: string,
+        dropdownText: string,
+      ): Chainable<Element>;
     }
   }
 }
@@ -36,4 +40,16 @@ Cypress.Commands.add('byTestSelector', (selector: string) =>
 
 Cypress.Commands.add('byTestDropDownMenu', (selector: string) =>
   cy.get(`[data-test-dropdown-menu="${selector}"]`),
+);
+
+Cypress.Commands.add(
+  'selectValueFromAutoCompleteDropDown',
+  (selector: string, dropdownText: string) => {
+    cy.get(selector).click();
+    cy.byLegacyTestID('dropdown-text-filter').type(dropdownText);
+    cy.get('ul[role="listbox"]')
+      .find('li')
+      .contains(dropdownText)
+      .click();
+  },
 );

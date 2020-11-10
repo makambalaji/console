@@ -1,6 +1,6 @@
 import { addOptions, gitAdvancedOptions, buildConfigOptions } from '../../constants/add';
 import { detailsPage } from '../../../../../integration-tests-cypress/views/details-page';
-import { pageTitle } from '../../staticText/addFlow'
+import { messages, pageTitle } from '../../../fixtures/staticText/addFlow';
 
 export const addPageObj = {
   cardTitle: 'div.catalog-tile-pf-title',
@@ -32,8 +32,7 @@ export const addPageObj = {
     routing: {
       hostname: '#form-input-route-hostname-field',
       path: '#form-input-route-path-field',
-      targetPort: '#form-input-route-unknownTargetPort-field',
-      // targetPort: 'button#form-dropdown-route-targetPort-field',
+      targetPort: 'input[placeholder="8080"]',
       secureRoute: 'input#form-checkbox-route-secure-field',
       tlsTermination: 'button#form-dropdown-route-tls-termination-field',
       insecureTraffic: 'button#form-dropdown-route-tls-insecureEdgeTerminationPolicy-field',
@@ -89,7 +88,11 @@ export const addPage = {
       .should('be.visible');
     cy.get(addPageObj.pipeline.infoMessage).should('have.text', message);
   },
-  enterGitUrl: (gitUrl: string) => cy.get(addPageObj.gitRepoUrl).clear().type(gitUrl),
+  enterGitUrl: (gitUrl: string) =>
+    cy
+      .get(addPageObj.gitRepoUrl)
+      .clear()
+      .type(gitUrl),
   verifyPipelineCheckBox: () => cy.get(addPageObj.pipeline.addPipeline).should('be.visible'),
   enterAppName: (appName: string) => {
     cy.get(addPageObj.appName).then(($el) => {
@@ -112,11 +115,8 @@ export const addPage = {
   enterComponentName: (name: string) => {
     cy.get(addPageObj.nodeName)
       .scrollIntoView()
-      .clear();
-    cy.get(addPageObj.nodeName)
-      .scrollIntoView()
-      .type(name);
-    cy.get(addPageObj.nodeName).should('have.value', name);
+      .clear().should('be.empty', { timeout: 3000 })
+      .type(name).should('have.value', name);
   },
   veirfyNodeName: (componentName: string) =>
     cy.get(addPageObj.nodeName).should('have.value', componentName),
@@ -249,7 +249,7 @@ export const addPage = {
       .should('be.enabled')
       .click(),
   verifyValidatedMessage: () =>
-    cy.get(addPageObj.gitSection.validatedMessage).should('have.text', 'Validated'),
+    cy.get(addPageObj.gitSection.validatedMessage).should('have.text', messages.gitUrlValidated),
   verifyBuilderImageDetectedMessage: () =>
     cy.get(addPageObj.builderSection.builderImageDetected).should('be.visible'),
   verifyBuilderImageVersion: () =>
@@ -273,7 +273,7 @@ export const addPage = {
     addPage.clickCreate();
   },
   selectTargetPortForRouting: () => {
-    cy.get(addPageObj.advancedOptions.routing.targetPort).type('8080');
+    cy.get(addPageObj.advancedOptions.routing.targetPort).scrollIntoView().clear().type('8080');
   },
   enterRoutingHostName: (hostName: string) =>
     cy.get(addPageObj.advancedOptions.routing.hostname).type(hostName),
@@ -306,7 +306,7 @@ export const addPage = {
   enterBuildConfigEnvValue: (envValue: string) =>
     cy.get(addPageObj.advancedOptions.buildConfig.envValue).type(envValue),
   verifyDeploymentOptionIsChecked: () => {
-    cy.get('#form-checkbox-deployment-triggers-image-field').should('be.checked');
+    cy.get(addPageObj.advancedOptions.deployment.deploymentTriggerImage).should('be.checked');
   },
   enterDeploymentEnvName: (envName: string) =>
     cy.get(addPageObj.advancedOptions.deployment.envName).type(envName),
