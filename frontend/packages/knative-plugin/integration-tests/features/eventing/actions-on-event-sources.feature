@@ -3,9 +3,9 @@ Feature: Event Sources actions
               As a user, I want to perform actions on event sources
 
         Background:
-            Given user has created or selected namespace "aut-event-source-actions"
+            Given user has created or selected namespace "aut-context-menu-actions"
               And user has created knative service "nodejs-ex-git"
-              And user has created "sink-binding" event source
+              And user has created Sink Binding event source "sink-binding"
 
 
         @regression
@@ -17,7 +17,7 @@ Feature: Event Sources actions
 
         @smoke
         Scenario: Move sink to different knative service using context menu: Kn-11-TC02
-            Given user has created another knative service "nodejs-ex-git-1"
+            Given user has created knative service "nodejs-ex-git-1"
               And knative service, event source and sink connector are present in topology page
              When user right clicks on the event source "sink-binding" to open context menu
               And user selects "Move sink" from context menu

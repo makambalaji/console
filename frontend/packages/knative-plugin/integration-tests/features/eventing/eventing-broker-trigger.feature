@@ -9,7 +9,8 @@ Feature: Knative Eventing Broker and Trigger
 
         @smoke
         Scenario: Add Trigger to Broker
-            Given user is having Broker on the Topology page
+            Given user created Broker "broker-name"
+              And user is at Topology page
              When user right clicks on the Broker to open the context menu
               And user clicks on the Add Trigger
               And user selects the auto populated name of subscription

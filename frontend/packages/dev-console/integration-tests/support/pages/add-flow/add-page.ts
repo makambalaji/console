@@ -2,12 +2,11 @@ import { detailsPage } from '../../../../../integration-tests-cypress/views/deta
 import { addOptions } from '../../constants/add';
 import { pageTitle } from '../../constants/pageTitle';
 import { cardTitle } from '../../pageObjects/add-flow-po';
+import { app } from '../app';
 
 export const addPage = {
   selectCardFromOptions: (card: addOptions | string) => {
-    cy.document()
-      .its('readyState')
-      .should('eq', 'complete');
+    app.waitForDocumentLoaded();
     switch (card) {
       case 'Git':
       case addOptions.Git:
@@ -34,44 +33,53 @@ export const addPage = {
       case 'From Catalog':
       case addOptions.DeveloperCatalog:
         cy.byLegacyTestID('dev-catalog').click();
-        cy.document()
-          .its('readyState')
-          .should('eq', 'complete');
+        app.waitForDocumentLoaded();
         detailsPage.titleShouldContain(pageTitle.DeveloperCatalog);
+        cy.testA11y(pageTitle.DeveloperCatalog);
         break;
       case 'Database':
       case addOptions.Database:
         cy.byLegacyTestID('dev-catalog-databases').click();
         detailsPage.titleShouldContain(pageTitle.DeveloperCatalog);
+        cy.testA11y(pageTitle.DeveloperCatalog);
         break;
       case 'Event Source':
       case addOptions.EventSource:
         cy.byLegacyTestID('knative-event-source').click();
         detailsPage.titleShouldContain(pageTitle.EventSource);
+        cy.testA11y(pageTitle.EventSource);
         break;
       case 'Helm Chart':
       case addOptions.HelmChart:
         cy.byLegacyTestID('helm').click({ force: true });
         detailsPage.titleShouldContain(pageTitle.HelmCharts);
+        cy.testA11y(pageTitle.HelmCharts);
         break;
       case 'Operator Backed':
       case addOptions.OperatorBacked:
         cy.byLegacyTestID('operator-backed').click();
         detailsPage.titleShouldContain(pageTitle.OperatorBacked);
+        cy.testA11y(pageTitle.OperatorBacked);
         break;
       case 'Pipelines':
       case addOptions.Pipeline:
         cy.byLegacyTestID('pipeline').click();
-        cy.get('h1.odc-pipeline-builder-header__title').should('have.text', 'Pipeline Builder');
+        cy.get('h1.odc-pipeline-builder-header__title').should(
+          'have.text',
+          pageTitle.PipelineBuilder,
+        );
+        cy.testA11y(pageTitle.PipelineBuilder);
         break;
       case 'Yaml':
       case addOptions.YAML:
         cy.byLegacyTestID('import-yaml').click();
         cy.get('[data-mode-id="yaml"]').should('be.visible');
+        cy.testA11y(pageTitle.YAML);
         break;
       case addOptions.DevFile:
         cy.byLegacyTestID('import-from-devfile').click();
         detailsPage.titleShouldContain(pageTitle.DevFile);
+        cy.testA11y(pageTitle.DevFile);
         break;
       default:
         throw new Error(`Unable to find the "${card}" card on Add page`);

@@ -8,21 +8,24 @@ import { operatorsPO } from '@console/dev-console/integration-tests/support/page
 import { installOperator } from '@console/dev-console/integration-tests/support/pages/functions/installOperatorOnCluster';
 import { operatorsPage } from '@console/dev-console/integration-tests/support/pages/operators-page';
 import { guidedTour } from '../../../../integration-tests-cypress/views/guided-tour';
+import {
+  createKnativeEventing,
+  createKnativeServing,
+} from '../pages/functions/knativeSubscriptions';
 
 before(() => {
   perspective.switchTo(switchPerspective.Administrator);
   operatorsPage.navigateToInstallOperatorsPage();
-  cy.get(operatorsPO.installOperators.search)
-    .should('be.visible')
-    .clear()
-    .type(operators.PipelinesOperator);
+  operatorsPage.searchOperator(operators.ServerlessOperator);
   cy.get('body', {
     timeout: 50000,
   }).then(($ele) => {
     if ($ele.find(operatorsPO.installOperators.noOperatorsFound)) {
-      installOperator(operators.PipelinesOperator);
+      installOperator(operators.ServerlessOperator);
+      createKnativeEventing();
+      createKnativeServing();
     } else {
-      cy.log('Pipeline operator is installed in cluster');
+      cy.log('Serverless operator is installed in cluster');
     }
   });
 });

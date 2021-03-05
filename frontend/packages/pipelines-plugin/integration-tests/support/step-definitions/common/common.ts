@@ -5,13 +5,11 @@ import {
   perspective,
   projectNameSpace,
 } from '@console/dev-console/integration-tests/support/pages/app';
-import { nav } from '../../../../../integration-tests-cypress/views/nav';
 import {
   devNavigationMenu,
   operators,
   switchPerspective,
 } from '@console/dev-console/integration-tests/support/constants/global';
-import { perspectiveName } from '@console/dev-console/integration-tests/support/constants/staticText/global-text';
 import { operatorsPO } from '@console/dev-console/integration-tests/support/pageObjects/operators-po';
 import { installOperator } from '@console/dev-console/integration-tests/support/pages/functions/installOperatorOnCluster';
 import { operatorsPage } from '@console/dev-console/integration-tests/support/pages/operators-page';
@@ -28,7 +26,6 @@ import { addPage } from '@console/dev-console/integration-tests/support/pages/ad
 
 Given('user has installed OpenShift Serverless Operator', () => {
   perspective.switchTo(switchPerspective.Administrator);
-  nav.sidenav.switcher.shouldHaveText(perspectiveName.administrator);
   operatorsPage.navigateToInstallOperatorsPage();
   cy.get(operatorsPO.installOperators.search)
     .should('be.visible')
@@ -52,7 +49,6 @@ Given('user is at developer perspective', () => {
   // Bug: 1890676 is created related to Accessibility violation - Until bug fix, below line is commented to execute the scripts in CI
   // cy.testA11y('Developer perspective with guider tour modal');
   guidedTour.close();
-  nav.sidenav.switcher.shouldHaveText(perspectiveName.developer);
   // Bug: 1890678 is created related to Accessibility violation - Until bug fix, below line is commented to execute the scripts in CI
   // cy.testA11y('Developer perspective');
 });

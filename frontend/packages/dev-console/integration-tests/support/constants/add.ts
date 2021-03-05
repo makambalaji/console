@@ -65,3 +65,10 @@ export enum builderImages {
   Java = 'Java',
   NodeJs = 'Node.js',
 }
+
+export enum eventSourceCards {
+  ApiServerSource = 'Api Server Source',
+  ContainerSource = 'Container Source',
+  PingSource = 'Ping Source',
+  SinkBinding = 'Sink Binding',
+}

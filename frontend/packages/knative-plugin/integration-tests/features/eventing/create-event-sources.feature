@@ -6,7 +6,7 @@ Feature: Create event sources
             Given user has installed eventing operator
               And user is at developer perspective
               And user has created or selected namespace "aut-create-knative-event-source"
-              And user has created or selected knative service "nodejs-ex-git"
+              And user has created knative service "nodejs-ex-git"
               And user is at Event Sources page
 
 

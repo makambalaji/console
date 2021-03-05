@@ -4,38 +4,28 @@ Feature: Event Sources can able sink to URI as well as Resource
 
 
         Background:
-            Given user has installed OpenShift Serverless Operator
-              And user is at developer perspective
-
-
-        @regression
-        Scenario: Resource and URI radio button on Event Sources Cards page
-            Given user is at Add page
-             When user clicks on Event Sources card
-              And user selects an event source card
-             Then user will see the Resource radio button
-              And user will see URI radio button
+            Given user has created or selected namespace "aut-create-knative-event-source"
 
 
         @smoke
-        Scenario: Event Source sink to Resource
-            Given user is at Add page
-             When user clicks on Event Sources card
-              And user selects an event source card
-              And user selects sink to Resource option
-              And user selects the resource from Select Resource dropdown
-              And user fills other information
+        Scenario: Sink Event Source is creaed with existing knative service
+            Given user has created knative service "nodejs-ex-git"
+              And user is at Event Sources page
+             When user selects event source type "Sink Binding"
+              And user selects Create Event Source
+              And user enters Subject apiVersion as "batch/v1"
+              And user enters Subject Kind as "Job"
+              And user selects Resource option in Sink section
+              And user selects the resource "nodejs-ex-git" for event source
+              And user enters the event source name "sink-binding"
               And user clicks on the Create button
              Then user will be redirected to Topology page
-              And user will see that event source is sinked with selected resource
+              And user will see the event source "sink-binding" is sinked with selected resource "nodejs-ex-git"
 
 
         @regression @manual
         Scenario: Event Source sink to URI
-            Given user is at Add page
-             When user clicks on Event Sources card
-              And user selects an event source card
-              And user selects sink to URI option
+             When user selects sink to URI option
               And user enters the URI
               And user fills other information
               And user clicks on the Create button

@@ -8,7 +8,9 @@ export const pageTitle = {
   Pipelines: 'Pipelines',
   PipelineBuilder: 'Pipeline builder',
   EventSource: 'Event Sources',
+  CreateEventSource: 'Create Event Source',
   upgradeHelmRelease: 'Upgrade Helm Release',
+
   Add: 'Add',
   GitOPs: 'GitOps',
   Monitoring: 'Monitoring',
@@ -35,4 +37,5 @@ export const pageTitle = {
   InstallOperator: 'Install Operator',
   InstalledOperators: 'Installed Operators',
   Environments: 'Environments',
+  Eventing: 'Eventing',
 };

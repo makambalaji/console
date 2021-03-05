@@ -4,10 +4,11 @@ import { addPage } from './add-page';
 import { addOptions, catalogCards, catalogTypes } from '../../constants/add';
 import { topologyHelper } from '../topology/topology-helper-page';
 import { helmPO } from '../../pageObjects/helm-po';
+import { detailsPage } from '../../../../../integration-tests-cypress/views/details-page';
 
 export const catalogPage = {
-  verifyTitle: () => cy.pageTitleShouldContain('Developer Catalog'),
-  verifyPageTitle: (page: string) => cy.pageTitleShouldContain(page),
+  verifyTitle: () => detailsPage.titleShouldContain('Developer Catalog'),
+  verifyPageTitle: (page: string) => detailsPage.titleShouldContain(page),
   isCheckBoxSelected: (type: string) => cy.get(`input[title="${type}"]`).should('be.checked'),
   isCardsDisplayed: () => cy.get(catalogPO.card).should('be.visible'),
   search: (keyword: string) =>
