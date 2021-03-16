@@ -1,6 +1,6 @@
 import { detailsPage } from '../../../../../integration-tests-cypress/views/details-page';
-import { pageTitle as helmPageTitle } from '../../constants/pageTitle';
-import { helmPO } from '../../pageObjects/helm-po';
+import { pageTitle as helmPageTitle } from '@console/dev-console/integration-tests/support/constants/pageTitle';
+import { helmPO } from '@console/dev-console/integration-tests/support/pageObjects/helm-po';
 import { modal } from '../../../../../integration-tests-cypress/views/modal';
 
 export const helmDetailsPage = {

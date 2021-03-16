@@ -1,8 +1,11 @@
 import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps';
-import { catalogPage } from '../../pages/add-flow/catalog-page';
-import { topologyPage, topologySidePane } from '../../pages/topology/topology-page';
-import { navigateTo } from '../../pages/app';
-import { devNavigationMenu } from '../../constants/global';
+import { catalogPage } from '@console/dev-console/integration-tests/support/pages/add-flow/catalog-page';
+import {
+  topologyPage,
+  topologySidePane,
+} from '@console/dev-console/integration-tests/support/pages/topology/topology-page';
+import { navigateTo } from '@console/dev-console/integration-tests/support/pages/app';
+import { devNavigationMenu } from '@console/dev-console/integration-tests/support/constants/global';
 import {
   upgradeHelmRelease,
   helmDetailsPage,

@@ -1,5 +1,5 @@
-import { helmPO } from '../../pageObjects/helm-po';
-import { messages } from '../../constants/staticText/helm-text';
+import { helmPO } from '@console/dev-console/integration-tests/support/pageObjects/helm-po';
+import { messages } from '../../constants/static-text/helm-text';
 
 export const helmPageObj = {
   upgradeHelmRelease: {
@@ -79,13 +79,12 @@ export const upgradeHelmRelease = {
       .should('be.visible'),
   upgradeChartVersion: (yamlView: boolean = false) => {
     cy.get(helmPageObj.upgradeHelmRelease.chartVersion).click();
-    cy.byLegacyTestID('dropdown-menu').then((listing) => {
-      const count = Cypress.$(listing).length;
-      const randNum = Math.floor(Math.random() * count);
-      cy.byLegacyTestID('dropdown-menu')
-        .eq(randNum)
-        .click();
-    });
+    cy.byLegacyTestID('dropdown-menu').should('be.visible');
+    const count = Cypress.$('[data-test-id="dropdown-menu"]').length;
+    const randNum = Math.floor(Math.random() * count);
+    cy.byLegacyTestID('dropdown-menu')
+      .eq(randNum)
+      .click();
     if (yamlView === true) {
       cy.alertTitleShouldContain('Change Chart Version?');
       cy.byTestID('confirm-action').click();
